@@ -7,6 +7,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import login_required
 from sqlalchemy import or_, and_
 from tempfile import mkdtemp
+import requests
 
 app = Flask(__name__)
 
@@ -73,16 +74,40 @@ def book(isbn):
         return render_template("error.html", message="no such book")
 
     #POST request
-    if request.method == "post":
+    if request.method == "POST":
+
+        #ensure proper usage
+        if not request.form.get("text_review") or not request.form.get("ratings") :
+            return render_template("error.html", message="must fill in the required fields to submit a review")
+
         #if the user has submitted a review for this book
         #get all reviews for this book
-        #reviews = book.review
-        #for review in
-        pass
+        reviews = book.reviews
+        for review in reviews:
+            if  session["user_id"] ==  review.user.id:
+                return render_template("error.html", message="user already reviewed this book")
+
+        #create a review by this user:
+        n_review = Reviews(opinion=request.form.get("text_review"), rating=request.form.get("ratings"),
+                    user_id=session["user_id"], book_isbn=isbn)
+        db.session.add(n_review)
+        db.session.commit()
+
+        return redirect(url_for("index"))
     #GET request
     else:
-        return render_template("book.html", book=book )
 
+        #get the goodreads review
+        res = requests.get("https://www.goodreads.com/book/review_counts.json", params={'key':os.getenv("API_KEY"),
+        'isbns':isbn})
+
+        #if goodreads review exists
+        if res.status_code == 200:
+            resjson = res.json()["books"]
+            return render_template("book.html", book=book, average_rating=resjson[0]["average_rating"],
+             rating_count=resjson[0]["work_ratings_count"])
+        else:
+            return render_template("book.html", book=book)
 
 
 @app.route("/login", methods=["GET", "POST"])
