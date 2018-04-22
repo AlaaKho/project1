@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, session, request, render_template, url_for, redirect
+from flask import Flask, session, request, render_template, url_for, redirect, jsonify
 from flask_session import Session
 from models import *
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -110,6 +110,34 @@ def book(isbn):
             return render_template("book.html", book=book)
 
 
+
+@app.route("/api/<string:isbn>")
+def book_api(isbn):
+
+    #make sure the isbn exists
+    book = Books.query.get(isbn)
+
+    if book is None:
+        return jsonify({"error":"book doesn't exist"}), 404
+
+    #book actually exists
+    review_count = len(book.reviews)
+    average_score = 0
+
+    for review in book.reviews:
+        average_score += review.rating
+
+    average_score = average_score/review_count
+    response = {
+                "title": book.title,
+                "author": book.author,
+                "year": book.pub_year,
+                "isbn":book.isbn,
+                 "review_count": review_count,
+                  "average_score": average_score}
+
+    return jsonify(response)
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
 
@@ -175,6 +203,6 @@ def register():
             db.session.commit()
 
             session["user_id"] = user.id
-            return redirect(url_for("search"))
+            return redirect(url_for("index"))
     else:
         return render_template("register.html")
