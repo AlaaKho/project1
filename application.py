@@ -7,6 +7,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import login_required
 from sqlalchemy import or_, and_
 from tempfile import mkdtemp
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 
@@ -30,6 +31,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 
 db.init_app(app)
 Session(app)
+migrate = Migrate(app, db)
 
 
 # Check for environment variable
@@ -76,8 +78,9 @@ def book(isbn):
     if request.method == "post":
         #if the user has submitted a review for this book
         #get all reviews for this book
-        reviews = book.review
-        for review in
+        #reviews = book.review
+        #for review in
+        pass
     #GET request
     else:
         return render_template("book.html", book=book )
