@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>{%block title%}{%endblock%}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+  </head>
+
+  <body>
+    <nav>
+      <a href="{{url_for('logout')}}">logout</a>
+    </nav>
+    <section>
+      <main class="container">
+        {%block main%}{%endblock%}
+      </main>
+    </section>
+  </body>
+</html>

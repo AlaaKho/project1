@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+
+{% block main %}
+    <form action="{{ url_for('index') }}" method="post">
+      <input  class="form-control" type="text" name="field" placeholder="search by ISBN, title, or author" autocomplete="off"/>
+      <button type="submit">Search</button>
+    </form>
+    <ul>
+      {%for match in matches %}
+        <li>
+          <a href="{{url_for('book', isbn=match.isbn)}}">{{match.title}}</a>
+        </li>
+      {% else %}
+        <h5>{{message}}</h5>
+      {% endfor %}
+    </ul>
+
+
+{% endblock %}
