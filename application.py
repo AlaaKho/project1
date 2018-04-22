@@ -7,7 +7,6 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import login_required
 from sqlalchemy import or_, and_
 from tempfile import mkdtemp
-from flask_migrate import Migrate
 
 app = Flask(__name__)
 
@@ -31,7 +30,6 @@ app.config["SESSION_TYPE"] = "filesystem"
 
 db.init_app(app)
 Session(app)
-migrate = Migrate(app, db)
 
 
 # Check for environment variable
