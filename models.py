@@ -9,6 +9,7 @@ class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     password = db.Column(db.String, nullable=False)
+    reviews = db.relationship("Reviews", backref="user", lazy=True)
 
 
 
@@ -20,7 +21,7 @@ class Books(db.Model):
     title = db.Column(db.String, nullable=False)
     author = db.Column(db.String, nullable=False)
     pub_year = db.Column(db.String, nullable=False)
-    review = db.relationship("Reviews", backref="book", lazy=True)
+    reviews = db.relationship("Reviews", backref="book", lazy=True)
 
 
 class Reviews(db.Model):
