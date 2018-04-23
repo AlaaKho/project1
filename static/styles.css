@@ -1,0 +1,31 @@
+body {
+  font-family: 'Merriweather', serif;
+  background-color: #333399;
+  color: white; }
+
+nav {
+  margin-bottom: 2rem;
+  height: 4rem; }
+  nav a {
+    margin-left: 89%; }
+
+#loginform, #registerform {
+  margin: auto;
+  background-color: #efeff5;
+  padding: 3rem; }
+  #loginform h3, #registerform h3 {
+    text-align: center;
+    color: #4d004d; }
+
+main.container {
+  margin-bottom: 4rem; }
+
+.btn-light {
+  background-color: #e6e600;
+  color: #4d004d; }
+
+h3 {
+  margin-bottom: 2rem;
+  margin-top: 2rem; }
+
+/*# sourceMappingURL=styles.css.map */
