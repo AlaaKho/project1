@@ -5,13 +5,31 @@
 {% endblock %}
 
 
+
 {% block main %}
-    <h3>Login to your Account</h3>
-    <form action="{{url_for('login')}}" method="post">
-      <input class="form-control" type="text" name="username" placeholder="Enter your username" autocomplete="off"/>
-      <input class="form-control" type="password" name="password" placeholder="Enter your password"/>
-      <button class="form-control" type="submit">Submit</button>
+
+  <h3>Login to your Account</h3>
+
+    <form action="{{url_for('login')}}" method="post" id="loginform" class="form-control col-6">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input class="form-control" type="text" name="username" placeholder="Enter your username" autocomplete="off"/>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input class="form-control" type="password" name="password" placeholder="Enter your password"/>
+      </div>
+
+      <div class="form-group">
+        <button class="form-control btn btn-light" type="submit">login</button>
+      </div>
+
+      <div>
+        Don't Have an account? <a href="{{url_for('register')}}">Register</a>
+      </div>
     </form>
-    or
-    <a href="{{url_for('register')}}">Register</a>
+
+
+
 {% endblock %}

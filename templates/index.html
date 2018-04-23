@@ -5,6 +5,11 @@
 {% endblock %}
 
 
+{% block nav%}
+  <a href="{{url_for('logout')}}">logout</a>
+
+{% endblock %}
+
 {% block main %}
     <form action="{{ url_for('index') }}" method="post">
       <input  class="form-control" type="text" name="field" placeholder="search by ISBN, title, or author" autocomplete="off"/>

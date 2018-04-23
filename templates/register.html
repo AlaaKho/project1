@@ -6,12 +6,27 @@
 
 {% block main %}
   <h3>Register for new Account</h3>
-  <form action="{{url_for('register')}}" method="post">
-    <input type="text" name="username" placeholder="Enter your username" autocomplete="off"/>
-    <input type="password" name="password" placeholder="Enter your password"/>
-    <button type="submit">Submit</button>
+  <form action="{{url_for('register')}}" method="post" class=" form-control col-6" id="registerform">
+
+    <div class="form-group">
+      <label for="username"> Username </label>
+      <input type="text" name="username" placeholder="Enter your username" autocomplete="off" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input  type="password" name="password" placeholder="Enter your password" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class=" form-control btn btn-light">register</button>
+    </div>
+
+    <div>
+      Have an account already?   <a href="{{url_for('login')}}">Login</a>
+    </div>
   </form>
-  or
-  <a href="{{url_for('login')}}">Login</a>
+
+
 
 {% endblock %}
