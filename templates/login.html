@@ -8,9 +8,10 @@
 
 {% block main %}
 
-  <h3>Login to your Account</h3>
 
     <form action="{{url_for('login')}}" method="post" id="loginform" class="form-control col-6">
+      <h3>Login to your Account</h3>
+
       <div class="form-group">
         <label for="username">Username</label>
         <input class="form-control" type="text" name="username" placeholder="Enter your username" autocomplete="off"/>
