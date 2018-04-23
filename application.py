@@ -187,6 +187,9 @@ def register():
         if not request.form.get("username")  or not request.form.get("password"):
             return render_template("error.html", message="Please fill in the required fields")
 
+        if request.form.get("password") != request.form.get("confirmation"):
+            return render_template("error.html", message="passwords don't match.")
+
         #check if user exists
         user = Users.query.filter_by(name=request.form.get("username")).first()
 
