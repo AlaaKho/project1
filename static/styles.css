@@ -25,6 +25,9 @@ main.container {
   #loginform a, #registerform a {
     color: #007bff; }
 
+#logo {
+  margin-left: 40px; }
+
 .btn-light {
   background-color: #e6e600;
   color: #4d004d; }
