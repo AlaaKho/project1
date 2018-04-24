@@ -7,18 +7,24 @@ body
 }
 
 
-nav{
-    margin-bottom: 2rem;
+nav.row{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    //margin-bottom: 2rem;
     height: 4rem;
     //background-color: #c2c2d6;
-  a{
-    margin-left: 89%;
 
-  }
 }
 
 
+//needed for the placement of the content inside main.
+main.container{
+  margin-bottom: 4rem;
+  padding: 3rem;
+}
 
+//needed for the placement of the content inside of the login, register forms
 #loginform, #registerform
 {
     margin: auto;
@@ -29,13 +35,8 @@ nav{
       text-align: center;
       color: #4d004d;
     }
+
 }
-
-
-main.container{
-  margin-bottom: 4rem;
-}
-
 
 
 .btn-light

@@ -3,11 +3,15 @@ body {
   background-color: #333399;
   color: white; }
 
-nav {
-  margin-bottom: 2rem;
+nav.row {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
   height: 4rem; }
-  nav a {
-    margin-left: 89%; }
+
+main.container {
+  margin-bottom: 4rem;
+  padding: 3rem; }
 
 #loginform, #registerform {
   margin: auto;
@@ -16,9 +20,6 @@ nav {
   #loginform h3, #registerform h3 {
     text-align: center;
     color: #4d004d; }
-
-main.container {
-  margin-bottom: 4rem; }
 
 .btn-light {
   background-color: #e6e600;
