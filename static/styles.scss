@@ -4,6 +4,9 @@ body
   font-family: 'Merriweather', serif;
   background-color: #333399;
   color: white;
+  a{
+    color: white;
+  }
 }
 
 
@@ -34,6 +37,9 @@ main.container{
     {
       text-align: center;
       color: #4d004d;
+    }
+    a{
+      color: #007bff;
     }
 
 }

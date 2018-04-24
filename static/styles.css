@@ -2,6 +2,8 @@ body {
   font-family: 'Merriweather', serif;
   background-color: #333399;
   color: white; }
+  body a {
+    color: white; }
 
 nav.row {
   margin-left: auto;
@@ -20,6 +22,8 @@ main.container {
   #loginform h3, #registerform h3 {
     text-align: center;
     color: #4d004d; }
+  #loginform a, #registerform a {
+    color: #007bff; }
 
 .btn-light {
   background-color: #e6e600;
