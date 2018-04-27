@@ -39,19 +39,24 @@ if not os.getenv("DATABASE_URL"):
 
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
 @login_required
 def index():
 
-    if request.method == "POST":
 
-        #check proper usage
-        if not request.form.get("field"):
-            return render_template("error.html", message="must fill in the required fields.")
+    #check proper usage
+    #GETting to  search page
+    if  request.args.get("field") == None:
+        return render_template("index.html")
 
-        #search
-        field = request.form.get("field")
+    #proper usage
+    elif request.args.get("field") == "":
+        return render_template("index.html", message="must fill in the required fields.")
 
+    #search for the input 
+    else:
+        #field was searched
+        field = request.args.get("field")
         matches = Books.query.filter(or_(Books.isbn.ilike(f"%{field}%"),
             Books.title.ilike(f"%{field}%"), Books.author.ilike(f"%{field}%"))).all()
 
@@ -59,9 +64,8 @@ def index():
         if matches != []:
             return render_template("index.html", matches=matches)
         else:
-            return render_template("index.html", message="No possible matches", matches=matches)
-    else:
-        return render_template("index.html")
+            return render_template("index.html", message="No possible matches")
+
 
 
 @app.route("/book/<string:isbn>", methods=["GET", "POST"])

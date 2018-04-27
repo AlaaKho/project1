@@ -18,7 +18,7 @@
       <div class="row">
         <label class="col-6 offset-md-2">Search for a Book</label>
       </div>
-      <form action="{{ url_for('index') }}" method="post" class="row justify-content-center">
+      <form action="{{ url_for('index') }}" method="get" class="row justify-content-center">
 
         <div class="form-group col-md-6">
           <input  class="form-control" type="text" name="field" placeholder="search by ISBN, title, or author" autocomplete="off"/>
@@ -30,15 +30,25 @@
     </div>
 
     <div class="form-group">
-      <ul>
-        {%for match in matches %}
-          <li>
-            <a href="{{url_for('book', isbn=match.isbn)}}">{{match.title}}</a>
-          </li>
-        {% else %}
-          <h5>{{message}}</h5>
-        {% endfor %}
-      </ul>
+      {% if matches is defined or message is defined%}
+
+        <div class="form-group" id="heading_results">
+          <h4>Search Results</h4>
+        </div>
+        <div class="form-group">
+          <ul>
+            {%for match in matches %}
+              <li>
+                <a href="{{url_for('book', isbn=match.isbn)}}">{{match.title}}</a>
+              </li>
+
+            {% else %}
+              <h5>{{message}}</h5>
+            {% endfor %}
+          </ul>
+        </div>
+
+        {% endif %}
     </div>
 
 
