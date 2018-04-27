@@ -59,7 +59,7 @@ def index():
         if matches != []:
             return render_template("index.html", matches=matches)
         else:
-            return render_template("index.html", message="No possible matches")
+            return render_template("index.html", message="No possible matches", matches=matches)
     else:
         return render_template("index.html")
 
@@ -93,7 +93,7 @@ def book(isbn):
         db.session.add(n_review)
         db.session.commit()
 
-        return redirect(url_for("index"))
+        return redirect(url_for("book", isbn=isbn))
     #GET request
     else:
 
