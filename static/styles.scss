@@ -72,3 +72,25 @@ ul{
 
   }
 }
+#heading_results
+{
+  color: #e6e600;
+  border-bottom: 1px solid #e6e600;
+}
+
+#book_details
+{
+  list-style-type: none;
+  > li {
+    strong{
+      color: #e6e600;
+    }
+  }
+}
+
+#review_form
+{
+  label{
+    color: #e6e600;
+  }
+}
