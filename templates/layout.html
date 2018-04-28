@@ -15,9 +15,15 @@
         <div class="col-auto mr-auto">
           <h2 id="logo">Books</h2>
         </div>
-        {% block nav %}{% endblock %}
-
-      </nav>
+        {% if session.user_id %}
+        <div class="col-auto">
+          <a href="{{url_for('index')}}">Search</a>
+        </div>
+          <div class="col-auto">
+            <a href="{{url_for('logout')}}">logout</a>
+          </div>
+        {%endif%}
+    </nav>
 
     </header>
 
