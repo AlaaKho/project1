@@ -13,7 +13,7 @@ def main():
             db.session.add(book)
 
     db.session.commit()
-    
+
 
 if __name__=="__main__":
     with app.app_context():

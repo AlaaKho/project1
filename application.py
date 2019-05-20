@@ -53,7 +53,7 @@ def index():
     elif request.args.get("field") == "":
         return render_template("index.html", message="must fill in the required fields.")
 
-    #search for the input 
+    #search for the input
     else:
         #field was searched
         field = request.args.get("field")
@@ -71,6 +71,7 @@ def index():
 @app.route("/book/<string:isbn>", methods=["GET", "POST"])
 @login_required
 def book(isbn):
+
     book = Books.query.get(isbn)
 
     #check if book exists
@@ -155,7 +156,6 @@ def login():
         #check if the user exists
         user = Users.query.filter_by(name=request.form.get("username")).first()
 
-        print(f"query of the user is{user}")
         #check with username
         if user is None:
             return render_template("error.html", message="no user with these credentials, Please register first!")
@@ -176,7 +176,7 @@ def logout():
 
     #forget logined user
     session.clear()
-    return redirect(url_for("index"))
+    return redirect(url_for("login"))
 
 
 
